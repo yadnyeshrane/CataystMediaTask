@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.card-container {
+    position: relative;
+    width: 80%;
+}
+.navigation-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.middle {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.card-container:hover .image {
+    opacity: 0.3;
+}
+
+.card-container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+ul,
+li {
+    list-style-type: none;
+    cursor: pointer;
+}
+.leftnaviagtion li {
+    text-indent: -2em;
+    cursor: pointer;
+}
+.bg-white{
+    background-color: white;
+}
+
+.loader{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif') 
+                50% 50% no-repeat rgb(249,249,249);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  
+  

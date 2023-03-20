@@ -50,6 +50,14 @@ function App() {
                                 </React.Suspense>
                             }
                         ></Route>
+                        <Route
+                            path="/colors"
+                            element={
+                                <React.Suspense fallback={<Loader/>}>
+                                    <LazyFilterproduct />
+                                </React.Suspense>
+                            }
+                        ></Route>
                     </Routes>
                 </BrowserRouter>
                 <ToastContainer />

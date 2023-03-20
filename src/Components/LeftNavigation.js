@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchColorList } from "./Colors/ColorAction";
 import { fetchMaterialList } from "./Material/MaterialAction";
 import { filterMaterialProduct } from "./Product/ProductAction";
 
 function LeftNavigation() {
     const dispatch = useDispatch();
     const MaterialList = useSelector((state) => state.material);
-
+    const ColorLIst=useSelector((state)=>state.color);
+    console.log("colorlist",ColorLIst);
     const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchMaterialList());
+        dispatch(fetchColorList());
     }, []);
 
-    function filterMeterialProducts(id) {
-        navigate("/materials");
+    function filterMeterialProducts(id,type) {
+        navigate(type);
         dispatch(filterMaterialProduct(id));
+    }
+    function navigatetoHomeroute()
+    {
+        navigate("/"); 
     }
     return (
         <>
@@ -23,7 +30,7 @@ function LeftNavigation() {
                 <div>
                     <b>Tags</b>
                     <ul>
-                        <li>All</li>
+                        <li onClick={()=>navigatetoHomeroute()}>All</li>
                         <li>Generic</li>
                         <li>Generic</li>
                         <li>Gneneric</li>
@@ -42,7 +49,7 @@ function LeftNavigation() {
                                             key={listdata.id}
                                             onClick={() =>
                                                 filterMeterialProducts(
-                                                    listdata.id
+                                                    listdata.id,"/materials"
                                                 )
                                             }
                                         >
@@ -56,10 +63,23 @@ function LeftNavigation() {
                 <div>
                     <b>Color</b>
                     <ul>
-                        <li>All</li>
-                        <li>Mint Green</li>
-                        <li>Blue</li>
-                        <li>Red</li>
+                        {
+                            ColorLIst!=null && ColorLIst!=undefined && ColorLIst.data.length>0 && ColorLIst.data.map((colordata)=>{
+                                return(<>
+                                 <li
+                                            key={colordata.id}
+                                            onClick={() =>
+                                                filterMeterialProducts(
+                                                    colordata.id,"/colors"
+                                                )
+                                            }
+                                        >
+                                            {colordata.name}
+                                        </li>
+                                </>)
+                            })
+                        }
+                       
                     </ul>
                 </div>
             </div>
